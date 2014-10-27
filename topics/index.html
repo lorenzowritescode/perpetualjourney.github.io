@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <title>Social Network Analysis</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet">
+  <script src="js/jquery-1.11.0.min.js"></script>
+  <script src="css/5grid/init.js?use=mobile,desktop,1000px"></script>
+  <script src="js/init.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="css/5grid/core.css">
+    <link rel="stylesheet" href="css/5grid/core-desktop.css">
+    <link rel="stylesheet" href="css/5grid/core-1200px.css">
+    <link rel="stylesheet" href="css/5grid/core-noscript.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-desktop.css">
+  </noscript>
+  <script src="js/lightbox-2.6.min.js"></script>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/lightbox.css">
+  <style type="text/css">
+  p {text-align: left;}
+  .paper p {width: 55em;}
+  .box p {width: 100%;}
+  li {list-style: none;}</style>
+</head>
+
+<body>
+  <!-- Nav -->
+  <nav id="nav">
+    <ul>
+      <li><a href="#top">Home</a>
+      </li>
+      <li><a href="#contents">Contents</a>
+      </li>
+      <li><a href="#influence">Influence</a>
+      </li>
+      <li><a href="#centrality">Centrality</a>
+      </li>
+      <li><a href="#community_and_clustering">Community</a>
+      </li>
+      <li><a href="#demo">Demo</a>
+      </li>
+      <li><a href="#biblio">Bibliography</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- Home -->
+  <div class="wrapper wrapper-style1 wrapper-first">
+    <article class="5grid-layout" id="top">
+      <div class="row">
+        <div class="4u"> <span class="me image image-full"><img src="images/3dnetwork.gif" alt=""></span>
+        </div>
+        <div class="8u">
+          <header>
+            <h1>Social Network Analysis</h1>
+          </header>
+          <p>This webpage will introduce you to main concepts in Social Network Analysis like centrality, community detection and influence. For the sources of our work please consult the <a href="#biblio">Bibliography</a> and be sure to check out our <a href="#demo">interactive demo</a>.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+  <!-- Contents -->
+  <div class="wrapper wrapper-style2">
+    <article id="contents">
+      <header>
+        <h1>Contents</h1>
+      </header>
+      <div class="5grid-layout">
+        <div class="row">
+          <div class="3u">
+            <section class="box box-style1"> <span class="image image-centered"><img
+                    src="images/work03.png" alt="" width=110 height=110></span>
+              <a href="#influence"><h3>Influence</h3></a>
+              <p>Discover how actions and behaviour ripples through social networks.</p>
+            </section>
+          </div>
+          <div class="3u">
+            <section class="box box-style1"> <span class="image image-centered"><img
+                    src="images/centrality.png" alt="" width=110 height=110></span>
+              <a href="#centrality"><h3>Centrality</h3></a>
+              <p>How can the connections between nodes affect influence?</p>
+            </section>
+          </div>
+          <div class="3u">
+            <section class="box box-style1"> <span class="image image-centered"><img
+                    src="images/clustering.png" alt="" width=110 height=110></span>
+              <a href="#community_and_clustering"><h3>Community Detection</h3></a>
+              <p>What's the signifincance of clustering in a network?</p>
+            </section>
+          </div>
+          <div class="3u">
+            <section class="box box-style1"> <span class="image image-centered"><img
+                    src="images/nodes.png" alt="" width=110 height=110></span>
+              <a href="#demo"><h3>Your Network</h3></a>
+              <p>Experiment and explore network influence with our interactive demo.</p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+  <!-- Influence -->
+  <div class="wrapper wrapper-style3">
+    <article id="influence" class="paper">
+      <div class="5grid-layout">
+        <div class="row">
+      <h1>Influence</h1>
+      <br>
+        <img src="images/influence/influence.png" style="border:2px solid gray">
+        <br>
+        <span>This is the Philosophers' Influence graph, for more information visit the original <a href="http://drunks-and-lampposts.com/2012/06/13/graphing-the-history-of-philosophy/">blog post.</a></span>
+      </a>
+      <br>
+      <header>
+      	<br>
+        <span>In this section we'll explore how social networks cater to the diffusion of information, behaviour and more. In particular, we'll look at <a href="#peer_influence"><strong>Peer Influence</strong></a>, <a href="#influence_ontwitter"><strong>Influence on Twitter</strong></a> and  <a href="#pagerank"><strong>the PageRank Algorithm</strong></a>.</span> 
+      </header>
+    </div>
+  </div>
+      
+    </article>
+  </div>
+  <!-- Peer Influence -->
+  <div class="wrapper wrapper-style2">
+    <article id="peer_influence" class="paper">
+      <h1>Peer Influence</h1>
+      <h4>based on Origin of Peer Influence and <a href=http://www.ted.com/talks/nicholas_christakis_the_hidden_influence_of_soci al_networks>The Hidden Influence of Social Networks</a></h4> 
+      <p>Social Networks have made available an enormous quantity of data regarding communities and their characteristics, through the study of these we have been able to understand how information is spread and, moreover, how defining traits fan out from
+        an individual to his neighbours.</p>
+      <p>The research produced by Christakis and Fowler (as presented in their paper "The spread of Obesity in a large Social Network over 32 years.", more info in the <a href="#biblio">Bibliography</a>.) has popularised the theory of the Three Degrees of Influence. This theory maintains that one's behaviour is spread not only to his direct neighbours, but it can affect the network up to three degrees of separation. So your friends, your friends' friends and their friends as well can all be influenced by your actions. Actions, information and behaviour ripples through the network until it naturally dissipates. There are three main reasons that cause the dissipation of this influence wave:</p>
+      <ul>
+        <li><strong>Decay</strong>: Just like in the telephone game, information, behaviour and defining traits are increasingly modified at each stage. Research has shown that, after three degrees, the integrity of the trait that is being passed on is so compromised that any further influence is considered negligible.
+        </li>
+        <li><strong>Unstable Social Ties</strong>: Since the spread of information happens over time, the ever changing social network doesn't guarantee the stability of links after the third degree of separation. All the events that can compromise links between people alter the network and make it inevitably difficult for information to pass on.</li>
+        <li><strong>Evolutionary</strong>: Human beings have developed in groups with at most three degrees of separation; therefore, a social network doesn't naturally support the spread of information after this stage.</li>
+      </ul>
+      <a href="images/influence/obesity_graph.png" data-lightbox="image" title="Obesity Graph">
+        <img src="images/influence/obesity_graph.png" height=350>
+      </a>
+      <h6>Largest Connected Subcomponent of the Social Network in the Framingham Heart Study in the Year 2000.</h6>
+      <p>In the Framingham Heart Study on the diffusion obesity conducted from 1975 to the year 2000, results have shown that if your friends are obese, your risk of obesity increases of 45%. 2 degrees away, the increase is 25% and at 3 degrees (the friends of your friends' friends) your risk still sees a 10% rise! In the studies, geographical distance has been compared to social distance, and the results have shown no trend in the spread of traits under the geographical reference while the social graph showed considerably skewed results. In an effort to understand how exactly these traits get across the network, researchers found evidence of the following 3 diffusion patterns: </p>
+      <ul>
+        <li><strong>Induction</strong>: if you pick up a trait your friends are likely to pick it up too just because you exhibit that trait around them.</li>
+        <li><strong>Homophily</strong>: you are more likely to make social ties with people who exhibit the same trait as you.</li>
+        <li><strong>Confounding</strong>: when people that are already linked in the network are exposed to a factor that causes them to pick up a new trait.</li>
+      </ul>
+      <p>A surprising result that arose from this studies on population is that not only behaviour and actions can be spread through the network, social networks allow and encourage the diffusion of norm. Ideas about what's normal are spread from individual to individual, and for instance after a number of people have adopted the smoking behaviour in a network cluster, smoking is internalised as the norm. And this works with obesity, criminal behaviour, emotional stability and so on and so forth.</p>
+      <p>The studies on the different habits have, in fact, produced results that were so similar that researchers formulated that "peer influence is insensitive to the process at stake" since the same clustering and connectivity attributes generated very similar results for each process studied.</p>
+      <p>Peer influence is a natural outcome of dynamical processes, and the patterns of peer influence are surprisingly independent of the structure of their relative social networks. Results of the research illustrated above suggest that social networks "effectively extend, in nontrivial ways, the dyadic interactions we started from."</p>
+    </article>
+  </div>
+  <!-- Influence on Twitter -->
+  <div class="wrapper wrapper-style2">
+    <article id="influence_ontwitter" class="paper">
+      <h3>Everyone's an Influencer:</h3>
+      <h1>Quantifying influence on Twitter</h1>
+      <p>In marketing, the utility of quantifying a user’s influence depends entirely on whether it can be done in advance. Usually the influencers are only identified in the aftermath of a marketing campaign. However, given the recent escalation of Social Networks (namely twitter, in this section) and the colossal amounts of data that come with it, is it possible to predict influence in such a way that it can be cost-effective? In this section, we’ll explore the question of quantifying influence and we’ll dive into some surprising results.</p>
+      <p><i>This section will recount the findings of a study conducted in 2009. Since this content has been adapted for a non-technical public, we are aware that there might be some inaccuracies and oversimplifications. For more info, check the <a href="#biblio">Bibliography</a></i></p>
+      <h4>The Data</h4>
+      <p>Over a 2 month interval, researchers have collected the over 1 billion tweets generated by the twitter user base. Tweets were then filtered so that only those that contained bit.ly shortened urls were present. In the final filtering, only tweets by users who were active in both months of the study have been taken into consideration. The final tweet pool had a size of over 74M diffusion events, where an event is defined as repostings of a tweet generated by a single initiator (to which we will now refer to as ‘seed’).</p>
+      <p>The mean average of seeds per user was 46.33, 1 in 100 users posted 10 seeds or more while 1 in 1M users posted 1000 seeds or more, as shown in Table 1 above.</p>
+      <h4>Calculating Influence</h4>
+      <p>In order to calculate the influence of a given seed there needs to be a defined approach to attributing influence to influencers in respect to the spread of their seed. Let’s say that user B reposts a link. In the case where in user B’s pool of followed users, user A is the only user to post link X, then 100% of the influence is attributed to A. However when two or more users followed by B post the same link at two different times then there are 3 ways to attribute influence:</p>
+       <div class="5grid-layout card">
+        <div class="row">
+          <div class="4u">
+            <section class="box box-style1"> <span class="image image-centered"><img
+                    src="images/twitter_influence/influence_tree_first.png" height=352></span>
+              <h3>First Influence</h3>
+              <p>100% of the influence score is given to the user who posted the seed first.</p>
+            </section>
+          </div>
+          <div class="4u">
+            <section class="box box-style1"> <span class="image image-centered"><img
+                    src="images/twitter_influence/influence_tree_last.png" height=352></span>
+              <h3>Last Influence</h3>
+              <p>100% of the influence score is given to the most recent influencer.</p>
+            </section>
+          </div>
+          <div class="4u">
+            <section class="box box-style1"> <span class="image image-centered"><img
+                    src="images/twitter_influence/influence_tree_split.png"></span>
+              <h3>Split Influence</h3>
+              <p>Influence score is split up evenly amongst the influencers.</p>
+            </section>
+          </div>
+        </div>
+      </div>
+      <p></p>
+      <p>Thus we have now what’s called an <b>Influence Tree</b>, where the edges are weighed accordingly to one of the tree approaches described before, and the size of the tree is the sum of all the edges in the tree.</p>
+      <h4>Data Issues</h4>
+      <p>This study was conducted using each of the procedures above and it was concluded that different approaches yield approximately similar results, and it was safely assumed that the method choice would not affect the outcome of the study.
+However it is believed that the data collected may be in some way flawed due to the phenomenon of homophily, in which users who share some set of traits tend to form links between each other. Therefore, it is likely that users interested in the same topics will share the same URLs (almost) independently, whether or not they are influenced by other users. For the sake of this research, this occurrence is disregarded.<p>
+	<h4>From Calculation to Prediction: Building a Model.</h4>
+	<p><strong>Influencer</strong>: a user with the ability to constantly seed cascades that spread further than others.</p>
+	<a class="lightbox-image-link" href="images/twitter_influence/cascade_stats.png" data-lightbox="cascade-stats" title="Left: Frequency distribution of cascade sizes. Right: Distribution of cascade depths."><img src="images/twitter_influence/cascade_stats_thumb.png"></a>
+	<a class="lightbox-image-link" href="images/twitter_influence/spread_graph.png" data-lightbox="cascade-stats" title="Different information cascades on Twitter."><img src="images/twitter_influence/spread_graph_thumb.png"></a>
+	<p>From this definition and the empirical data collected, we can see how only 1 in 1M users can seed cascades of 1000 reposts, whereas only 1 in 100M users can generate a cascade of 10000 reposts.</p>
+	<a class="lightbox-image-link" href="images/twitter_influence/regression_tree.png" data-lightbox="regression-tree" title="Regression tree fit for one of the five cross-validation folds. Leaf nodes give the predicted influence for the corresponding partition, where the left (right) child is followed if the node condition is satisfied."><img src="images/twitter_influence/regression_tree_thumb.png"></a>
+	<p>To then calculate the index of influence on a scale of 0 (no influence exerted) to 1 (maximum influence recorded) researchers used various regression trees (a technique used in machine learning and data mining, <a href=“http://en.wikipedia.org/wiki/Decision_tree_learning”>wikipedia.org</a>) which originated a model that takes into account:</p>
+	<ol>
+	<li><strong>Seed User Attributes:</strong></li>
+		<ul>
+		<li>Followers</li>
+		<li>Friends <i>(users followed by seed user)</i></li>
+		<li>Tweets</li>
+		</ul>
+	<li><strong>Past Influence of Seed Users:</strong></li>
+		<ul>
+		<li>Average, minimum, and maximum total influences.</li>
+		<li>Average, minimum, and maximum local influence</li>
+		</ul>
+	</ol>
+	<p>In the graph above we can see the results of actual influence against predicted influence where the dot size is proportional to the number of diffusion events assigned to each leaf. While the model performs extremely well on average (almost perfectly with an accuracy of 98%), individual leafs as predicted by the model have been observed to perform relatively poorly compared to the actual results monitored in the second month of the study.</p>
+	<p>This suggests that while follower count and past success are <i>necessary</i>, they are <i>“far from sufficient.”</i></p>
+	<h4>A content-wise model</h4>
+	<div id="content_images" class="image-set">
+        <a class="lightbox-image-link" href="images/twitter_influence/content_graphs.png" data-lightbox="content-set" title="Average cascade size for different type of URLs. Error bars are standard errors.">
+          <img class="lightbox-image-thumb" src="images/twitter_influence/content_graphs.png" alt="Content Graph">
+        </a>
+        <a class="lightbox-image-link" href="images/twitter_influence/content_cascades.png" data-lightbox="content-set" title="Average cascade size for different
+categories of content. Error bars are standard errors.">
+          <img class="lightbox-image-thumb" src="images/twitter_influence/content_cascades.png" alt="Content Cascades">
+        </a>
+      </div>
+	<p>The 2009 study also experimented with differentiating the URLs by their content and fitting a new model around this new data about the nature of the website behind the shortened address. To do so, they have employed workforce from Amazon’s Mechanical Turk to sort content based on interestingness, rated positive feeling, willing to share via social and so on.</p>
+	<p>However, surprisingly, the new model which takes content diversity into account did not improve the previous fit (which dropped to 31% accuracy, when actual and predicted results are not averaged). However surprising the unimportance of content may be, it really is explained when we realise that <i>most explanations of success tend to rely on observed success.</i></p>
+	<h4>An optimal trade-off</h4>
+	<p>The impossibility of predicting influence on an individual basis suggests that the best strategy is to, indeed, <b>rely on average.</b></p>
+	<a class="lightbox-image-link" href="images/twitter_influence/alpha_influence_left.png" data-lightbox="alpha-graphs" title="Actual vs. predicted influence for regression tree including content."><img src="images/twitter_influence/alpha_influence_left_thumb.png"></a>
+	<a class="lightbox-image-link" href="images/twitter_influence/alpha_influence_right.png" data-lightbox="alpha-graphs" title="Graph of the cost function per user, where alpha is a multiplier proportional to the user's number of followers."><img src="images/twitter_influence/alpha_influence_right_thumb.png"></a>
+	<p>In a marketing scenario, if we picture the cost of any twitter user as a function of the number of his followers, the results of this study proves that the highest influence per dollar can be acquired exploiting <b><i>“ordinary influencers”</b></i>, users who exert average or less than average influence.</p>
+	<p>Since repost cascades aren’t directly proportional to the number of one’s followers, that “large cascades are rare”, and that “the vast majority of URLs so not spread at all” it is safe to state that the most cost-effecient users are “ordinary influencers.”</p>
+</article>
+  </div>
+  <!-- PageRank -->
+  <div class="wrapper wrapper-style2">
+    <article id="pagerank" class="paper">
+      <h1>Page Rank</h1>
+      <img src="images/pagerank/pagerank.png" alt="PageRank Img">
+      <h4>History of PageRank</h4>
+      <p>Initially, the PageRank algorithm was developed for ranking websites by Sergey Brin and Lawrence Page in 1996 for a "Large-Scale Hypertextual Web Search Engine". The need of such an algorithm was significantly great to order websites in the ever growing World Wide Web. At the time, one of the most commonly used methods was keyword counting. However, this posed serious problems as websites with less text and more pictures were unlikely to be a search result even though they might contain the required information. Even worse, a website could have several keywords such as football, rugby repeating a thousand times in a hidden html division such that when scanned it would have a high keyword match even though it isn't shown to the user. Thus, the success of the PageRank algorithm and subsequently Google were undeniable as they managed to bring a certain measure of order to the web.</p>
+      <p>In the recent years, due to its ranking nature the algorithm was expanded to other fields. It turned the algorithm was adequate in ranking relationship based networks anything from the web to any sort of directed connected simple graph. As it is, Social Networks was a natural candidate to harvest the potential of an algorithm to rank individuals in given networks.</p>
+      <h4>How does PageRank work? </h4>
+      <p>"We assume page A has pages T1...Tn which point to it (i.e., are citations). The parameter d is a damping factor which can be set between 0 and 1. We usually set d to 0.85. Also C(A) is defined as the number of links going out of page A. The PageRank
+        of a page A is given as follows: PR(A) = (1-d) + d (PR(T1)/C(T1) + ... + PR(Tn)/C(Tn)) Note that the PageRanks form a probability distribution over web pages, so the sum of all web pages' PageRanks will be one." Originally taken from the publication
+        by Sergey Brin and Larry Page, the algorithm is based on the incoming pages (pages that have a link or cite page A) of A that determine the PageRank of A.</p>
+      <p>If none of the nodes were connected, we can then easily say that their pagerank is the probably of one visiting that particular node. Hence, the initial pagerank of any node can be 1 / #nodes . This situation also points out an important property of pagerank: it is the probably of someone visiting a particular node inside the given network. Therefore, the sum of the pagerank of any closed network always sums upto 1 as it is a probability distribution. It then becomes intuitive for the pagerank value (probability of someone visiting) of a node increases when there are incoming links to it. A visitor becomes more likely to visit a node with more links as he will "directed" to that node. Take the example below:</p>
+      <img src="images/pagerank/network.png" alt="Network Example">
+      <p>In this case, the edges between nodes indicate the probability of one visitor going to another node from a given start node. For example, if we were at node 2, then we would have 2 options to choose from: we could go to node 3 or 4. Therefore, the probability of a transition is equal to 1 / #outgoing edges of a node. In fact, we can denote these transitions as a matrix: </p>
+      <img src="images/pagerank/matrixA.gif" alt="matrixA">
+      <p>Let that be matrix A denoting transitions of the nodes. In fact, it is just the stochastic column matrix formed from the adjacency matrix where each column is divided by the respective node's number of outgoing edges. Having that we can then calculate the pagerank vector (the probability vector) of our example network.</p>
+      <p>If we give an initial probability to the nodes in our example, we start off with our pagerank being 0.25 for every node (1/#number of nodes). Since edges of a node define the probability of going to some other node, it can be thought of edges transferring some portion of its importance to connecting node. For example, the probability of someone going from node 1 to node 4 is 1/3, thus node 4 "accumulates" one third of the importance of node 1. In other words, node 1 "transfers" one third of its importance to node 4. Thus the situation folds down to the following system of equations: </p>
+      <img src="images/pagerank/linear_pagerank.png">
+      <p>Well, we had our transition matrix which captures this situation; therefore, the result becomes Av where A is the transition matrix and v is the pagerank vector which is 0.25 currently. When we iterate this process, the result tends to a certain value. In our example, after 8 iterations we get our resulting pagerank vector. </p>
+      <img src="images/pagerank/dynamic_pagerank.png" alt="Dynamic PageRank">
+      <p>After reaching a certain equilibrium, in our case the vector
+        <img src="images/pagerank/pagerank_vector.png">, is the calculated pagerank vector. The most important aspect of this method is that it is computationally feasible. This is the method used, implemented in javascript on the demo page to calculate the pagerank of the nodes.</p>
+      <a href="http://www.math.cornell.edu/%7Emec/Winter2009/RalucaRemus/Lecture3/lecture3.html">Images taken from The Mathematics of Google Search, Cornell University</a> 
+    </article>
+  </div>
+
+  <div class="wrapper wrapper-style3">
+    <article id="centrality" class="paper">
+      <div class="5grid-layout">
+        <div class="row">
+      <h1>Centrality</h1>
+      <br>
+      <a href="images/centrality/centrality.png" data-lightbox="image" title="Influence Relationship">
+        <img src="images/centrality/centrality.png">
+      </a>
+      <header>
+        <span>In this section we'll explore how centrality gives an insight into the importance of a node in a graph. In particular, we'll look at 
+          <a href="#crit_connections"><strong>Critical Connections</strong></a> and 
+          <a href="#connections_everywhere"><strong>How Many Connections?</strong></a>.</span>
+      </header>
+    </div>
+  </div>
+      
+    </article>
+  </div>
+  <!-- Centrality -->
+  <div class="wrapper wrapper-style2">
+    <article id="crit_connectionse" class="paper">
+      <h1>Critical Connections and their Absence:</h1>
+      <p>
+      Centrality is a term referring to different measures of the influence of a node in a graph. The importance of such a node varies depending on which centrality metric is looked at.
+      </p>
+      <p>
+      Betweenness centrality is considered when “we're less concerned with importance and more concerned with how individuals' position in the network affect their access to information”. Formally, for a node v it denotes the “total portion of shortest-paths between every pair of nodes in the network that pass through v”. A node with high betweenness has great influence over what distributes, and what does not, in a network as it lies on a high proportion of paths between others in the network. There is an expression for the betweenness centrality of a node, however it is important to examine the features of a graph that give a richer perspective of what is going on with betweenness.
+      </p>
+      <h4>Important Ties</h4>
+      <p>
+      Bridges, for example. Bridges are ties that connect two nodes that otherwise would not have a path to each other. What would happen if it was removed? The flow of information along that link would cease.
+      </p>
+      <img src="images/centrality/graph_bridge.png">
+      <p>
+      The significance of bridges has been looked into extensively by Ronald Burt. The position of such an individual is unique because it transfers information between different groups. In the context of an organisation, an example of a bridge would be someone who directly deals with different departments. This leads to an important conclusion that “bridge relations are associated with more positive peer evaluations and higher bonus compensation”.
+      </p>
+      <p>
+      Bringing even more detail into bridging, there are lambda sets. Bridges deal with analysis rather “discretely” by considering decomposition of the graph into disconnected structures. Lambda sets are more “continuous” as they can indicate areas where the fabric of connection is most likely to be disrupted. To illustrate fully, we need to define line-connectivity and the lambda set itself.
+      </p>
+      <p>
+      The line-connectivity of a graph is the minimum number of lines whose removal results in a disconnected or trivial graph. So the line-connectivity of a disconnected graph is 0, while that of a connected graph with a bridge is 1.
+      </p>
+      <p>
+      "A set of nodes is a lambda set if any pair of nodes in the lambda set has a greater line-connectivity than any pairs of nodes consisting of one node from within the lambda set and a second node from outside the lambda set."
+      </p>
+      <p>
+      Lambda sets allow us to measure which bridges are more critical than others depending on how many nodes it connects with other nodes. In other words, we see which bridges are the most important by way of how much traffic they carry.
+      </p>
+      <h4>No Ties</h4>
+      <p>
+      On the opposite end of the scale are isolates. These are nodes that don't bridge anything and in fact aren't even connected to the main network! You might say that they're not an actor in the network, so why are they there in the visualisation? An answer to this question requires, again, the context of an organisation. There are multiple networks in such an environment, and there may be specialised relations between them. For example, the isolates might be working on something that requires great confidentiality. Confidentiality is achieved by not letting information flow to most of the individuals – hence the isolation of the node(s). The principle of isolates involves cutting off the transfer of information for certain reasons.
+      </p>
+      <img src="images/centrality/graph_isolation.png">
+      <h1 id="connections_everywhere">Connections, Connections Everywhere</h1>
+      <p>
+      There are many other kinds of centrality that can also shed light on what is going on in a network. In degree centrality, an important node is one that is involved in a large number of interactions or has high degree. In an undirected graph, the only kind of degree is a simple connection, whereas in a directed graph it may be informative to separate kinds of degree – in-degree and out-degree – and the centrality that is based on them. Facebook and Twitter are both social networking sites but differ in the kinds of networks they produce. Facebook is undirected as when you accept a friend request, the requestee is connected to the requester and vice versa. Twitter is directed and offers a more complex view on degree centrality. Those who are followed by a great number of people (have high in-degree centrality) are usually famous and prominent because many other individuals seek connections with them. Actors who make many ties (have high out-degree centrality) may be more sociable ad involved, or, receding from the Twitter context, can exchange with or display information to more people.
+      </p>
+      <img src="images/centrality/twit_and_fb.png">
+      <h4>Using Star Networks</h4>
+      <p>
+      Degree centrality is easy to get a sense of at a glance, using this definition. It's also fairly easy to estimate how “centralised” the network is as a whole. If a graph is the most centralised it can be then it is known as a 'star network'. A star graph has a node with a degree of the total number of nodes minus one, and the other nodes in the graph have a degree of one. As such, it forms a star-shaped graph that is the most unequal possible network for any number of nodes. Analysis involving this star graph was developed by Linton Freeman. Freeman felt that it would be useful to express the degree of inequality or variance in the network as a percentage of that of a perfect star network of the same size. With this technique, we can assess whether or not the power of individuals in the graph is equally distributed.
+      </p>
+      <h4>More Informative Degrees</h4>
+      <p>
+      Another modification to degree centrality analysis was proposed by Phillip Bonacich and it has been widely regarded as a better measure than the original. The original implies that nodes with the same degree are just as important, but this is not the case in the real world. What if the node in question is connected to lots of different individuals that are also connected to lots of different individuals? It is central, but not necessarily more powerful to be in that position as its connections are not dependent on it. Conversely, if the node had many ties to those who are not well-connected it does become powerful. Bonacich put forward the idea that “a unit's centrality is its summed connections to others, weighted by their centralities”. While the problem sounds unsolvable due to the mutual dependence involved, he showed that an answer could be reached using iteration and estimation. First, each node must be given an estimate of centrality based on their own degree, and add to this a weighted function of the degrees of the individuals to which they are connected. Then using this number, we do this process again. The more iterations done, the more the scores of each node tend to the same relative size.
+      </p>
+
+
+    </article>
+  </div>
+
+
+  <!-- Community -->
+  <div class="wrapper wrapper-style3">
+    <article id="community_and_clustering" class="paper">
+      <div class="5grid-layout">
+        <div class="row">
+      <h1>Community Detection and Clustering</h1>
+      <br>
+      <a href="images/modularity/modularity.png" data-lightbox="image" title="Clustering and Community Detection">
+        <img src="images/modularity/modularity.png">
+      </a>
+      <header>
+        <span>In this section we'll explore how the sub structures of a social network can give us an insight to the interactions between individuals. In particular, we'll look at <a href="#modularity"><strong>Modularity</strong></a> and <a href="#clustering"><strong>Clustering</strong></a>.</span> 
+      </header>
+      </div>
+    </div>
+      
+    </article>
+  </div>
+
+  <!-- Community -->
+  <div class="wrapper wrapper-style2">
+    <article id="modularity" class="paper">
+      <h1>Modularity</h1>
+      <p>Modularity is the concept of separating a system's components to "modules" that can then be recombined whilst preserving a coherent structure. The notion of using modules is common in the world of technology, especially programming. Many modern object-oriented programs divide a large program into smaller easier to manage modules, often called classes. These modules are then used to create a larger program similar to a network which from outside looks like a complete structure. For example, a file stream reader in Java is captured inside the IO modules (packages) which provide such functionality. However, the file stream reader might also be composed of other modules expanding the network. In fact, the relationship can be represented as a graph as seen below that is coloured according to their modularity calculated using the algorithm discussed in this article, (note that the graph and images are taken from Gephi graphing software): </p>
+      <div id="modularity_images" class="image-set">
+        <a class="lightbox-image-link" href="images/modularity/java_overview.png" data-lightbox="modularity-set" title="Java class library overview">
+          <img class="lightbox-image-thumb" src="images/modularity/java_overview.png" alt="Java overview">
+        </a>
+        <a class="lightbox-image-link" href="images/modularity/java_squeeze.png" data-lightbox="modularity-set" title="Java class clustered together">
+          <img class="lightbox-image-thumb" src="images/modularity/java_squeeze.png" alt="Java squeeze">
+        </a>
+        <a class="lightbox-image-link" href="images/modularity/java_centered.png" data-lightbox="modularity-set" title="Object Class">
+          <img class="lightbox-image-thumb" src="images/modularity/java_centered.png" alt="Modularity">
+        </a>
+        <a class="lightbox-image-link" href="images/modularity/java_right.png" data-lightbox="modularity-set" title="Awt.Component">
+          <img class="lightbox-image-thumb" src="images/modularity/java_right.png" alt="Modularity">
+        </a>
+        <a class="lightbox-image-link" href="images/modularity/java_buffer_community.png" data-lightbox="modularity-set" title="Buffer Community">
+          <img class="lightbox-image-thumb" src="images/modularity/java_buffer_community.png" alt="Modularity">
+        </a>
+        <a class="lightbox-image-link" href="images/modularity/java_regex_community.png" data-lightbox="modularity-set" title="Regex Community">
+          <img class="lightbox-image-thumb" src="images/modularity/java_regex_community.png" alt="Modularity">
+        </a>
+      </div>
+      <p>As seen in the graph, some classes are referenced very often by other classes and it is easy to spot "the mother of all classes: Object" at the centre. Another important class is the String that is also referenced frequently in the library. However, we also notice, "communities" of classes that are linked together that are relatively further away of the centre of the graph governed by Object and String classes. One of these communities is the buffer related classes, coloured blue and the regular expressions community which is only linked by the regex Matcher class is further away. The question is: How can we detect these communities? What are the possible applications of detecting communities in networks? Can we provide quantitive measure, calculate the modularity of a given network? </p>
+      <h4>Communities in Networks</h4>
+      <p>A particular application of modularity is to detect community formation in networks. A community of nodes within a network is characterised as a densely connected region. Whether it is social networks where as in real life people are part of communities or food webs, neural networks, analysing how grouping occurs within the network. This analysis is crucial in situations such as epidemics to cut off the community of infected people from the rest of the network in order to hamper further spread of the disease. If the linking person between two separate communities can be identified, then it would be unlikely for the disease to progress into neighbouring communities. A very similar situation applies to information distribution, especially over online social networks such as Twitter and Facebook. Detecting communities and sending them the information greatly increases the population to which information is spread since communities are very well linked but amongst each other. </p>
+      <h4>Calculating Modularity</h4>
+      <p style="width:40em;">“Modularity is, up to a multiplicative constant, the number of edges falling within groups minus the expected number in an equivalent network with edges placed at random.” <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1482622/">Modularity and community structure in networks</a>
+      </p>
+      <img src="images/modularity/modularity_eq.png" alt="Modularity Equation">
+      <p>We start off with a network having n nodes and assume we can partition the network into 2 groups. If for some vertex i, belongs to group 1 we denote si equal to 1 and -1 if it belongs to group 2. Now take another node j, from the adjacency matrix A of the network, let Aij denote either 1 or 0 corresponding to the number of edges connecting the two nodes. If ki and kj denoted the degree of the nodes i and j respectively and m the total number of edges, then the expected number of edges between i and j would be 
+        <img src="images/modularity/expected_edges.png">which accounts for the random distribution of the edges amongst the nodes. At this point, the modularity can be calculated as the sum of the edges in the same group minus the expected value if randomly distributed over all possible pairs as si times sj plus 1 evaluates to 0 if the nodes are not in the same group. </p>
+      <p>In other words, when compared to randomly distributed version of the network how does the current one compare. Therefore, if the final value of Q is positive, it indicates that the actual is relatively different from randomly distributed version suggesting there is clustering within the network. Conversely, if the value is negative, it suggests the actual graph is closer to being randomly distributed hence less likely to be clustered in any way. In the java class library example, the Q modularity value was approximately 0.448 suggesting there is clustering amongst the classes.</p>
+    </article>
+  </div>
+
+  <!-- Clustering -->
+  <div class="wrapper wrapper-style2">
+
+    <article id="clustering" class="paper">
+
+    <h1>Clustering</h1>
+    <h4>Global Clustering Coefficient</h4>
+
+    <p>
+    It is sometimes very useful to find out how clustered a social network is. The measure of clustering in a network is known as the Clustering Coefficient. This measure allows us to understand how tightly the nodes in a graph tend to cluster together. There is much evidence to suggest that most social networks in the real world form “tightly knit groups characterised by a relatively high density of ties”
+    </p>
+    <p>
+    There are two methods used to evaluate two types of Clustering Coefficient. The Global Clustering Coefficient (GCC) and the Local Clustering Coefficient (LCC).
+    </p>
+    <p>
+    Consider the graph below:
+    </p>
+
+    <img src="images/clustering/graph_gcc.png">
+    <br>
+    <span style="text-align: center;">Fig. 1</span>
+    <br>
+    <p>
+    Let us define some notation and a few key words. X -> Y means X is connected to Y. A triplet is a set of three nodes that are either connected by 2 edges (an open triplet) or 3 edges (a closed triplet). So A -> C -> D is an open triplet and C -> B -> F is a closed triplet. A triangle is made up of three closed triplets. We can use the nodes from the closed triplet before in an example. The triangle CBD is made up of the triplets C -> B -> F,   B -> F -> C,   F -> C -> B.
+    </p>
+    <p>
+    With the definitions out of the way we can go ahead and define the GCC.
+    </p>
+    <p>
+    GCC  =  sum( closed triplets ) / Sum( triplets )  =  sum( 3 * triangles ) / Sum( triplets )
+    </p>
+    <p>
+    How simple! Let’s calculate the GCC of  Fig. 1. It has two triangles, so it has 6 closed triplets. In total it has 10 triplets. So the GCC of Fig. 1 is 6/10 or 0.6.
+    </p>
+    <h4>General GCC</h4>
+    <p>
+    There is also a generalisation to the GCC to take weighted networks into account.
+    </p>
+    <p>
+    Normally you don’t have weighted edges in social networks but you could use the sum of similar attributes two nodes share as a form of weight. This allows us to explore the Homophily of the social network. I will discuss what Homophily is later on.
+    </p>
+    <p>
+    The generalisation states that instead of simply dividing the number of closed triplets by the total number of triplets, you firstly define a triplet value and then you divide the sum of closed triplet values by the sum of all the triplet values.
+    </p>
+    <p>
+    There are four main types of triplet value an analyst could choose to use. Given the weights of the edges in the triplets, you can take the triplet value to be the arithmetic mean, the geometric mean, the greatest value or the least most value. It is recommend to do some research into which method you want to use.
+    </p>
+    
+    <img src="images/clustering/graph_ggcc.png">
+    <br>
+    <span style="text-align: center;">Fig. 2</span>
+    <br>
+    <p>
+    Let’s work out both of the GCC’s of Fig. 2. There are five triplets, three of which are closed. We will choose to use the arithmetic mean as the value of the triplet value.
+    </p>
+    <p>
+    Normal GCC  =  3 / 5  =  0.6
+    </p>
+    <p>
+    <p>General GCC</p>
+    </p>
+
+    <p>
+      A -> B -> C = 3
+    </p>
+    <p>
+      B -> C -> A = 3
+    </p>
+    <p>
+      C -> A -> B = 3
+    </p>
+    <p>
+      A -> B -> D = 1.5
+    </p>
+    <p>
+      C -> B -> D = 2
+    </p>
+    <p>
+    General GCC  =  (3 + 3 + 3) / (3 + 3 + 3 + 1.5 + 2)  =  9 / 12.5  =  0.72
+    </p>
+    <p>
+    Now, if we take the GCCC and divide it by the NGCC we can use that ratio to determine whether the strong triplets (triplets with edges with large weights) are likely to be closed or open.
+    </p>
+    <p>
+    0.72 / 0.6  =  1.2
+    </p>
+    <p>
+    The ratio is greater than one! This means it is likely that Fig. 2’s strong triplets were closed. We can confirm this by looking at the diagram. Now, you might as why not just always look at the graph? Well the network might be more complex. So much so that it’s actually easier to calculate the GCC’s using a computer rather than by hand.
+    </p>
+
+    <h4>Local Clustering Coefficient</h4>
+
+    <p>
+    Whereas the GCC evaluates the clustering on the whole of a network, the LCC only evaluates the clustering of nodes neighbouring  a particular node.
+    </p>
+    <p>
+    Let links(N)  =  The sum of the edges between the neighbours of N.
+    Let virtual_links(N)  =  The sum of the possible edges between the neighbours of N.
+    </p>
+    <p>
+    LCC(N)  =  links(N) / virtual_links(N)
+    </p>
+    <p>
+    This is all good and well but how do we figure out what virtual_links(N) evaluates to? Well, we simply take the neighbours of N and calculate how many edges a complete network of these nodes would be. This is k(k-1) / 2 where k is the number of neighbours.
+    </p>
+    <p>
+    So LCC(N) = links(N) / ( k(k-1) / 2 )
+    </p>
+    <p>
+    Let us a take a few examples from Fig. 1
+    </p>
+    <p>
+    D has two neighbours, C and E, and they are both linked. So LCC(D)  =  1 / 1  =  1
+    C has five neighbours, A, B, D, E, F. There are only 2 out of a possible 10 links so LCC(C)  =  2 / 10  =  0.2
+    LCC(A) is undefined as it has less than two neighbours.
+    </p>
+    <p>
+    A huge advantage of the LCC over the GCC is that it can assign clustering values to each node, which can allow for further analysis. However, the LCC has limitations which include not working on weighted networks and not working on directed networks.
+    </p>
+
+    <h4>Homophily</h4>
+
+    <p>
+    Homophily is a characteristic that many social networks display. It is the likelihood that individuals will form bonds with those similar to them. For example we could use Facebook as an example. Consider 100 students all at the same school. Students will be more likely to add others in the same year as them.
+    </p>
+
+    <img src="images/clustering/homophily.png">
+
+    <p>
+    Let’s say there is a football club in this school, it has students of all years in it. Despite the fact that they might be in different years, they apart of the same club, so they are more likely to add those in the club.
+    </p>
+    <p>
+    There are two types of Homophily which are demonstrated in real-life social networks. There is status homophily and value homophily.
+    </p>
+
+    <h3>Substructures</h3>
+
+
+    <h4>Cliques</h4>
+
+    <p>
+    When a graph, G, has a large amount of clustering (and by extension a large clustering coefficient) cliques begin to form. A clique is a subgraph of G where every node in the subgraph is connected to every other node in the subgraph. 
+    </p>
+
+    <img src="images/clustering/clique.png">
+
+    <h4>N-Cliques</h4>
+
+    <p>
+    However, this definition of a clique is very often too strict. This is where N-cliques come in. They are defined to be slightly weaker than the clique definition. Whereas a clique wants every node to be directly connected to the others in the clique, in an N-cliquea node is in the N-clique if it is connected to every other node by a distance greater than one. This distance is usually 2.
+    </p>
+
+    <img src="images/clustering/n-clique.png">
+
+    <h4>K-Plex</h4>
+
+    <p>
+    Another attempt at redefining the clique is the K-Plex. K-Plex’s allow a node to be apart of a clique if they are connected to every other node in a smaller slique minus k nodes. So if A, B, and C are all connected, D would be in a 1-plex clique if it was connected to 2 out of the three of those nodes.
+    </p>
+
+    <p>
+    The K-Plex and N-Clique might seem rather similar, but they produce extremely different structures when you group all the cliques together. This variation allows us to analyse simulations of social structures in different ways.
+    </p>
+  </article>
+
+  </div>
+
+  <!-- Demo -->
+  <div class="wrapper wrapper-style1">
+    <article id="demo" class="paper">
+      <h1>Build your network</h1>
+      <div id="graphDiv" style="float:left;"></div>
+      <div id="content">
+        <p>Use the interactive graph to create nodes and analyze the pagerank. Click to add new nodes and drag to create new links. To delete select a node or an edge and press Delete. The first slider is the damping value and the second corresponds to the
+          precision. See the <a href="#biblio">bibliography</a> for information on the libraries used in this demo.
+        </p>
+        <div id="graph_control" style="margin: auto; width: 65em;">
+          <span>Damping Value: </span>
+          <input id="damping_value" type="range" min="0" max="1" value="0.85" step="0.025" onchange="showValue('dampValue', this.value)" />
+          <span id="dampValue">0.85</span>
+          <hr>
+          <span>Precision: </span>
+          <input id="precision_value" type="range" min="1" max="8" value="3" step="1" onchange="showValue('precisionValue', this.value)" />
+          <span id="precisionValue">3</span>
+          <hr>
+          <button type="button" onclick="displayR()" class="button">Recalculate</button>
+        </div>
+        <table id="pagerankTable" border="1" summary="PageRank of Nodes"></table>
+
+        <script type="text/javascript">
+          function showValue(spanID, newValue) {
+            document.getElementById(spanID).innerHTML = newValue;
+          }
+        </script>
+      </div>
+
+      <script type="text/javascript" src="js/sylvester.src.js"></script>
+      <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+      <script type="text/javascript" src="js/pagerank.js"></script>
+      <script type="text/javascript" src="js/app.js"></script>
+    </article>
+  </div>
+  <!-- Bibliography -->
+  <div class="wrapper wrapper-style2">
+    <article id="biblio" class="biblioformatting">
+      <h1>Bibliography</h1>
+      <h3>Peer Influence</h3>
+      <ul>
+        <li><strong>Origin of Peer Influence in Social Networks.</strong> Flávio L. Pinheiro, Marta D. Santos, Francisco C. Santos, and Jorge M. Pacheco.
+          <a href="http://dx.doi.org/10.1103/PhysRevLett.112.098702">Physical Review Letter</a>.</li>
+        <li><strong>The hidden influence of social networks.</strong> Nicholas Christakis.
+          <a href="http://www.ted.com/talks/nicholas_christakis_the_hidden_influence_of_social_networks"> TED.com</a>.</li>
+        <li><strong>The Spread of Obesity in a Large Social Network over 32 Years.</strong> Nicholas A. Christakis and James H. Fowler.
+          <a href="http://www.nejm.org/doi/full/10.1056/nejmsa066082"> The New England Journal of Medicine</a>.</li>
+      </ul>
+      <h3>Influence on Twitter</h3>
+      <ul>
+        <li><strong>Everyone's an Influencer: Quantifying influence on Twitter.</strong> Eytan Bakshy, Jake M. Hofman, Winter A. Mason, Duncan J. Watts.
+          <a href="http://dl.acm.org/citation.cfm?id=1935845"> WSDM</a>.</li>
+      </ul>
+      <h3>PageRank</h3>
+      <ul>
+        <li><strong>The Anatomy of a Large-Scale Hypertextual Web Search Engine</strong>, Lawrance Page, Sergey Brin, <a href="http://infolab.stanford.edu/~backrub/google.html">Stanford InfoLab</a>.
+        </li>
+        <li><strong>The Mathematics of Google Search</strong>, Raluca Tanase, Remus Radu, <a href="http://www.math.cornell.edu/~mec/Winter2009/RalucaRemus/Lecture3/lecture3.html">Cornell Math</a>.
+        </li>
+      </ul>
+      <h3>Centrality</h3>
+      <ul>
+        <li><strong>Bridge Decay</strong> Ronald Burt 2001</li>
+        <li><strong>Graph Theory</strong> Frank Harary 1994</li>
+        <li><strong>A Set of Measures of Centrality Based on Betweenness</strong> Linton Freeman 1977</li>
+        <li><strong>Power and Centrality: A Family of Measures</strong> Phillip Bonacich 1987</li>
+        <li><strong>Social Network Analysis: Methods and Applications</strong> Wasserman, S 1994<a href="http://books.google.co.uk/books?hl=en&lr=&id=CAm2DpIqRUIC&oi=fnd&pg=PR21&dq=Wasserman,+S.+Social+Network+Analysis:+Methods+and+Applications.+1994.&ots=HuOqvd-GMi&sig=K4dw3P_yd6RC7lla8uG-7d1TyME#v=onepage&q=Wasserman%2C%20S.%20Social%20Network%20Analysis%3A%20Methods%20and%20Applications.%201994.&f=false">Book</a></li>
+        <li><strong>Augmented Betweenness Centrality for Mobility Prediction in Transportation Networks</strong> Media Lab. <a href="http://hd.media.mit.edu/tech-reports/TR-671.pdf">MIT</a></li>
+      </ul>
+
+      <h3>Community Detection</h3>
+      <ul>
+        <li><strong>Modularity and Community Structure in Networks.</strong> M.E.J. Newman.
+          <a href="http://www.pnas.org/content/103/23/8577.abstract"> PNAS</a>.</li>
+      </ul>
+
+      <h3>Clustering</h3>
+      <ul>
+        <li><strong>Clustering in Weighted Networks</strong> Tore Opsahl <a href="http://toreopsahl.com/tnet/weighted-networks/clustering/">toreopsahl.com</a></li>
+        <li><strong>Friendship as a Social Process: A Substantive and Methodological Analysis</strong> Lazarsfeld, P. F. and Merton, R. K. RONKEYLAF (1954)</li>
+        <li><strong>InFreedom and Control in Modern Society</strong>, Morroe Berger, Theodore Abel, and Charles H. Page, eds. New York: Van Nostrand, 18–66.</li>
+        <li><strong>Cliques and Sub-groups</strong> Robert Hanneman <a href="http://faculty.ucr.edu/~hanneman/nettext/C11_Cliques.html">faculty.ucr.edu</a></li>
+      </ul>
+
+      <h3>Demo</h3>
+      <ul>
+        <li><strong>Directed Graph Editor</strong>, Joss Kirsling, <a href="http://bl.ocks.org/rkirsling/5001347">bl.ocks.org</a>.
+        </li>
+        <li><strong>PageRank Explained with Javascript</strong>, William Cotton, <a href="http://williamcotton.com/pagerank-explained-with-javascript">williamcotton.com</a>.
+        </li>
+        <li><strong>Sylvester Matrix & Vector Library</strong>, James Coglan, <a href="http://sylvester.jcoglan.com">sylvester.jcoglan.com</a>.
+        </li>
+      </ul>
+    </article>
+  </div>
+  <!-- Contact -->
+  <div class="wrapper wrapper-style4">
+    <article id="contact" class="aboutUs">
+      <header>
+        <h2>Contact Us</h2>
+        <span>We are 1st year Computing students at Imperial College London.</span>
+        <a class="button" href="mailto:nuri.cingillioglu13@imperial.ac.uk">Nuri Cingillioglu</a>
+        <a class="button" href="mailto:lorenzo.paoliani13@imperial.ac.uk">Lorenzo Paoliani</a>
+        <hr style="visibility:hidden">
+        <a class="button" href="mailto:ay1013@ic.ac.uk">Aliona Yepifanova</a>
+        <a class="button" href="mailto:jcg13@ic.ac.uk">James Grant</a>
+      </header>
+      
+      <!-- added a paragraph so that I could fold the code-->
+  </div>
+  <footer>
+    <p id="copyright">© 2014 Nuri C., Lorenzo P., Ali Y., James G. | Design: <a href="http://html5up.net/">HTML5 Up!</a> 
+    </p>
+  </footer>
+  </article>
+  </div>
+</body>
+
+</html>
