@@ -3,4 +3,4 @@ perpetualjourney.github.io
 
 Personal Website
 
-[lorenzopaoliani.info](lorenzopaoliani.info)
+[lorenzopaoliani.info](http://lorenzopaoliani.info)
