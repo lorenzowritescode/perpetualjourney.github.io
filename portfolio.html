@@ -45,13 +45,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#coding">Coding</a>
+                        <a onclick="scrollWin('coding')">Coding</a>
                     </li>
                     <li>
-                        <a href="#design">Design</a>
+                        <a onclick="scrollWin('design')">Design</a>
                     </li>
                     <li>
-                        <a href="#else">Everything Else</a>
+                        <a onclick="scrollWin('else')">Everything Else</a>
                     </li>
                 </ul>
             </div>
@@ -125,6 +125,12 @@
 
         container.append(assembledTemplate);
     })
+
+    function scrollWin(divId){
+        $('html,body').animate({
+            scrollTop: $("#" + divId).offset().top - 30
+            }, 600);
+    }
     </script>
 
 </body>
