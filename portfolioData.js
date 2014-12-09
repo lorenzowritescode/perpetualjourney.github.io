@@ -11,21 +11,24 @@ var portfolioData = [
 	subtitle:  "A work in progress.",
 	img: 'startup_circus_cover.png',
 	description : "<p>Startup Circus is a new concept of careers fair, which is internship focused and targets students in their first year of University.</p><p>The truth is that most STEM graduates (specially from Imperial) will either be swallowed by the world of corporate banking and finance, or end up doing some kind of software related job.</p><p>The idea is that if people get involved in the world of work early on, by the time they graduate there will be no need for careers fairs, because they'll already know where to work.</p>",
-	link: 'http://startupcircus.co.uk'
+	link: 'http://startupcircus.co.uk',
+	btnText: 'Launch Website'
 }, 
 {
 	title: "Internship Presentation",
 	subtitle:  "The most important things I have learnt in my internship.",
 	img: 'presentation_cover.png',
 	description : "<p>This is a presentation I gave at the end of the <a href=\"http://www.joinef.com/founder-school-internship/\" target=\"_blank\">EF Summer Internship Programme</a> 2014.</p><p>This was also a cool opportunity to try a cool javaScript library <a href=\"http://lab.hakim.se/reveal-js/#/\" target=\"_blank\">reveal.js</a>.</p><p><i>This is a presentation where the slides support the speech, and therefore it's quite hard to follow without guidance.</i> <b>But it's very pretty so go on and click.</b></p>",
-	link: 'ef_presentation/index.html'
+	link: 'ef_presentation/index.html',
+	btnText: 'View Presentation'
 }, 
 {
 	title: "Social Network Analysis",
 	subtitle:  "Year One Group Project",
 	img: 'social_network_portfolio.png',
 	description : "<p>I made this as part of the \"Topics in Computing\" project at Imperial College London. It explains the science between social network phenomena such as influence, clustering and centrality.</p><p>My group and I won the Programme Prize for Best Group Project on Social Network Analysis.</p>",
-	link: 'topics/'
+	link: 'topics/',
+	btnText: 'Launch Mini-Site'
 }, 
 {
 	title: "Resident Designer at Wilkinson and Weeks Hall",
@@ -41,7 +44,8 @@ var portfolioData = [
 	img: 'photography_cover.png',
 	description : "<p>I've been pressing shutter buttons for a fair amount of years and I've got some of my pictures up on flickr.</p><p>I've been interested in taking pictures of works of art, since they are often misrepresented in photography. I find the way we look at screens to be completely opposite to the way we look at art in museums and I've been exploring how the two can meet halfway.</p>",
 	link: 'http://flickr.com/lorenzop',
-	category: 'design'
+	category: 'design',
+	btnText: "Go to Flickr"
 }, 
 {
 	title: "Presentation Design",
@@ -49,7 +53,8 @@ var portfolioData = [
 	img: 'pres_design_cover.png',
 	description : "<p>People always seem to appreciate my presentations. I have a bunch of <b>FREE</b> tricks to teach that will make any presentation instantly so much better. And I'd like to share them with the world <small>so that I don't have to sit through 40 slides of Comic Sans <i>ever again</i>.</small></p>",
 	link: 'presentation-design.html',
-	category: 'design'
+	category: 'design',
+	btnText: "View Presentation"
 },
 {
 	title: "Hall Senior",

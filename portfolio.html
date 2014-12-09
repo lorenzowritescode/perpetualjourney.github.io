@@ -105,16 +105,25 @@
     <script type="text/javascript">
 
     var templateSkeleton =
-    '<div class="row"><div class="col-md-7"><a target="_blank" href="<%=link%>"><img class="img-responsive" src="media/<%=img%>" alt="<%=title%> image"></a></div><div class="col-md-5"><h3><%=title%></h3><h4><%=subtitle%></h4><p><%=description%></p><a class="btn btn-primary" href="<%=link%>" target="_blank">View Project <span class="glyphicon glyphicon-chevron-right"></span></a></div></div><hr>';
+    '<div class="row"><div class="col-md-7"><a target="_blank" href="<%=link%>"><img class="img-responsive" src="media/<%=img%>" alt="<%=title%> image"></a></div><div class="col-md-5"><h3><%=title%></h3><h4><%=subtitle%></h4><p><%=description%></p><a class="btn btn-primary linkButton" href="<%=link%>" target="_blank"><%=btnText%> <span class="glyphicon glyphicon-chevron-right"></span></a></div></div><hr>';
     
     var compiledTemplate = _.template(templateSkeleton);
 
     _.each(portfolioData, function(datum, index) {
+        datum.btnText = datum.btnText || "View Project";
+
         var category = datum.category || "coding",
             container = $('#' + category),
-            assembledTemplate = compiledTemplate(datum);
+            assembledTemplate = $(compiledTemplate(datum));
 
-        container.append($(assembledTemplate));
+        if (datum.link == '') {
+            console.log(assembledTemplate);
+            var buttonToRemove = assembledTemplate.find('.linkButton');
+            buttonToRemove.remove();
+            console.log(assembledTemplate);
+        }
+
+        container.append(assembledTemplate);
     })
     </script>
 
