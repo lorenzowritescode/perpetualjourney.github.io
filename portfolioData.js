@@ -32,27 +32,31 @@ var portfolioData = [
 	subtitle:  "(literally resident.) (I live here.)",
 	img: 'wwsquared.png',
 	description : "<p>I've been producing print and digital designs for my Hall of Residence for almost a year now.</p><p>It all started with the design of the new unified logo which was adopted as the official logo last year.</p><p>I have particularly enjoyed this because I got to design and shape the identity of this place in which 200+ new students come to live in every year.</p>",
-	link: ''
+	link: '',
+	category: 'design'
 }, 
 {
 	title: "Photography",
 	subtitle:  "",
 	img: 'photography_cover.png',
 	description : "<p>I've been pressing shutter buttons for a fair amount of years and I've got some of my pictures up on flickr.</p><p>I've been interested in taking pictures of works of art, since they are often misrepresented in photography. I find the way we look at screens to be completely opposite to the way we look at art in museums and I've been exploring how the two can meet halfway.</p>",
-	link: 'http://flickr.com/lorenzop'
+	link: 'http://flickr.com/lorenzop',
+	category: 'design'
 }, 
 {
 	title: "Presentation Design",
 	subtitle:  "A short presentation I gave at the EF Unconference.",
 	img: 'pres_design_cover.png',
 	description : "<p>People always seem to appreciate my presentations. I have a bunch of <b>FREE</b> tricks to teach that will make any presentation instantly so much better. And I'd like to share them with the world <small>so that I don't have to sit through 40 slides of Comic Sans <i>ever again</i>.</small></p>",
-	link: 'presentation-design.html'
+	link: 'presentation-design.html',
+	category: 'design'
 },
 {
 	title: "Hall Senior",
 	subtitle:  "Wilkinson & Weeks 2014-2015",
 	img: 'senior_cover.png',
 	description : "Being on the senior team has been more challenging than I thought it would be. Planning social life for 200+ students and managing your own student life is a task and a half.",
-	link: ''
+	link: '',
+	category: 'else'
 }
 ];
