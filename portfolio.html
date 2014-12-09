@@ -17,48 +17,17 @@
     <!-- Custom CSS -->
     <link href="css/1-col-portfolio.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
+<style type="text/css">
+
+body {
+    padding-top: 30px;
+}
+
+</style>
 
 <body>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Home</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a onclick="scrollWin('coding')">Coding</a>
-                    </li>
-                    <li>
-                        <a onclick="scrollWin('design')">Design</a>
-                    </li>
-                    <li>
-                        <a onclick="scrollWin('else')">Everything Else</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+    <div id="navbar"></div>
 
     <!-- Page Content -->
     <div class="container">
@@ -96,6 +65,10 @@
 
     <!-- jQuery Version 1.11.0 -->
     <script src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        // loads navbar into place
+        $('#navbar').load('portfolioNav.html');
+    </script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
@@ -104,29 +77,29 @@
     <script src="portfolioData.js"></script>
     <script type="text/javascript">
 
-    var templateSkeleton =
-    '<div class="row"><div class="col-md-7"><a target="_blank" href="<%=link%>"><img class="img-responsive" src="media/<%=img%>" alt="<%=title%> image"></a></div><div class="col-md-5"><h3><%=title%></h3><h4><%=subtitle%></h4><p><%=description%></p><a class="btn btn-primary linkButton" href="<%=link%>" target="_blank"><%=btnText%> <span class="glyphicon glyphicon-chevron-right"></span></a></div></div><hr>';
-    
-    var compiledTemplate = _.template(templateSkeleton);
+    $(document).ready(function(e) {
+        var templateSkeleton =
+        '<div class="row"><div class="col-md-7"><a target="_blank" href="<%=link%>"><img class="img-responsive" src="media/<%=img%>" alt="<%=title%> image"></a></div><div class="col-md-5"><h3><%=title%></h3><h4><%=subtitle%></h4><p><%=description%></p><a class="btn btn-primary linkButton" href="<%=link%>" target="_blank"><%=btnText%> <span class="glyphicon glyphicon-chevron-right"></span></a></div></div><hr>';
+        
+        var compiledTemplate = _.template(templateSkeleton);
 
-    _.each(portfolioData, function(datum, index) {
-        datum.btnText = datum.btnText || "View Project";
+        _.each(portfolioData, function(datum, index) {
+            datum.btnText = datum.btnText || "View Project";
 
-        var category = datum.category || "coding",
-            container = $('#' + category),
-            assembledTemplate = $(compiledTemplate(datum));
+            var category = datum.category || "coding",
+                container = $('#' + category),
+                assembledTemplate = $(compiledTemplate(datum));
 
-        if (datum.link == '') {
-            console.log(assembledTemplate);
-            var buttonToRemove = assembledTemplate.find('.linkButton');
-            buttonToRemove.remove();
-            console.log(assembledTemplate);
-        }
+            if (datum.link == '') {
+                var buttonToRemove = assembledTemplate.find('.linkButton');
+                buttonToRemove.remove();
+            }
 
-        container.append(assembledTemplate);
-    })
+            container.append(assembledTemplate);
+        })
+    });
 
-    function scrollWin(divId){
+    function scrollWin(divId) {
         $('html,body').animate({
             scrollTop: $("#" + divId).offset().top - 30
             }, 600);
