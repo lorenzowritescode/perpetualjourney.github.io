@@ -7,6 +7,30 @@ var portfolioData = [
 	link: 'befittd.html'
 },
 {
+    title: "Pokedex",
+    subtitle: "An AngularJS WebApp for your favourite fictional monsters",
+    img: 'pokedex.png',
+    description: '<p>I\'m writing this little cute thing to tinker with some of AngularJS features, such as the ui-router, the $cacheFactory and more.</p><p>The data is pulled from <a href="http://pokeapi.co">PokeAPI</a> the uber cool REST API for all your pokemon needs.</p><p>This project is open source and available <a href="http://github.com/perpetualjourney/pokedex">on my Github.</a></p>',
+    link: 'http://perpetualjourney.github.io/pokedex',
+    btnText: 'Gotta catch \'em all!'
+},
+{
+    title: 'WACC-a-Script',
+    subtitle: 'A WACC to ARM compiler + WACC to JavaSript transpiler + AngularJS Testing Rig',
+    img: 'wacc.png',
+    description: '<p>This project is the result of a 2 month group project on compilers.</p><p>It is a massive codebase (more than 10000 lines of code) made up of mostly Java. The rest is Ruby for testing scripts, ANTLR for parser generation, and JS for everything related to the transpiler, which was the extension we chose.</p><p>This was one of the hardest and longest projects I\'ve ever done, and there\'s many interesting parts of the codebase, such as the <a href="http://flowtype.org">Flow</a> parser which allows semantic checking of the WACC source when using external JavaScript libraries which have been type-annotated.<p/><p>This project is open source and available <a href="http://github.com/perpetualjourney/WACC-a-Script">on my Github.</a></p><p>The Testing Rig has an ExpressJS backend that tests the requested files against a set of inputs. It is hosted on a DigitalOcean droplet.</p>',
+    link: 'http://178.62.82.220:3000/',
+    btnText: 'Live Demo of the Testing Rig'
+},
+{
+    title: 'Decus',
+    subtitle: 'ICHACK 2015 - An open API to effortlessly donate to your favourite ',
+    img: 'decus.png',
+    description: '<p>A friend of mine and I hacked this over 24 hours at ICHACK 2015. The idea is quite complex, and I\'ll have to write a proper explanation of it at some point. Basically, I am fed up with pay walls such as the NYT or the WSJ, and this is a proof-of-concept experiment to see if there\'s a better way to pay content creators.</p><p>In the meantime, you can just go and post whatever you like on it.</p><p>The front-end repo is <a href="http://github.com/perpetualjourney/ichack2015-front-end">on my Github.</a></p>',
+    link: 'https://ichack.firebaseapp.com/#/',
+    btnText: 'Decus Home'
+},
+{
 	title: "Startup Circus",
 	subtitle:  "A work in progress.",
 	img: 'startup_circus_cover.png',
@@ -28,11 +52,12 @@ var portfolioData = [
 	img: 'social_network_portfolio.png',
 	description : "<p>I made this as part of the \"Topics in Computing\" project at Imperial College London. It explains the science between social network phenomena such as influence, clustering and centrality.</p><p>My group and I won the Programme Prize for Best Group Project on Social Network Analysis.</p>",
 	link: 'topics/',
-	btnText: 'Launch Mini-Site'
+	btnText: 'Launch Mini-Site',
+    disabled: true
 }, 
 {
 	title: "Resident Designer at Wilkinson and Weeks Hall",
-	subtitle:  "(literally resident.) (I live here.)",
+	subtitle:  "",
 	img: 'wwsquared.png',
 	description : "<p>I've been producing print and digital designs for my Hall of Residence for almost a year now.</p><p>It all started with the design of the new unified logo which was adopted as the official logo last year.</p><p>I have particularly enjoyed this because I got to design and shape the identity of this place in which 200+ new students come to live in every year.</p>",
 	link: '',
@@ -54,7 +79,8 @@ var portfolioData = [
 	description : "<p>People always seem to appreciate my presentations. I have a bunch of <b>FREE</b> tricks to teach that will make any presentation instantly so much better. And I'd like to share them with the world <small>so that I don't have to sit through 40 slides of Comic Sans <i>ever again</i>.</small></p>",
 	link: 'presentation-design.html',
 	category: 'design',
-	btnText: "View Presentation"
+	btnText: "View Presentation",
+    disabled: true
 },
 {
 	title: "Hall Senior",
