@@ -1,12 +1,18 @@
 var portfolioData = [
 {
+	title: "BentoChat",
+	subtitle:  "Year 2 WebApp Project",
+	img: 'bento_cover.png',
+	description : "BentoChat is an opinionated platform for group productivity. It offers a robust Chat, a streamlined Wiki, and intuitive Todos. It's still a work in progress for now, but a private alpha will be available in September 2015 with a public launch set for early 2016.",
+	link: 'http://www.slideshare.net/lorenzop/bentochat-a-platform-for-group-organisation',
+	btnText: 'Presentation on Slideshare'
+},{
 	title: "Befittd",
 	subtitle:  "Internship - Summer 2014",
 	img: 'befittd_portfolio_cover.png',
 	description : "An overview of what I've done in my internship at Befittd, a fashion-tech startup based in London.",
 	link: 'befittd.html'
-},
-{
+},{
     title: "Pokedex",
     subtitle: "An AngularJS WebApp for your favourite fictional monsters",
     img: 'pokedex.png',
@@ -36,7 +42,8 @@ var portfolioData = [
 	img: 'startup_circus_cover.png',
 	description : "<p>Startup Circus is a new concept of careers fair, which is internship focused and targets students in their first year of University.</p><p>The truth is that most STEM graduates (specially from Imperial) will either be swallowed by the world of corporate banking and finance, or end up doing some kind of software related job.</p><p>The idea is that if people get involved in the world of work early on, by the time they graduate there will be no need for careers fairs, because they'll already know where to work.</p>",
 	link: 'http://startupcircus.co.uk',
-	btnText: 'Launch Website'
+	btnText: 'Launch Website',
+	disabled: true
 }, 
 {
 	title: "Internship Presentation",
@@ -54,7 +61,16 @@ var portfolioData = [
 	link: 'topics/',
 	btnText: 'Launch Mini-Site',
     disabled: true
-}, 
+},
+{
+	title: "Kwittr",
+	subtitle:  "Year 2 Human Centered Design project",
+	img: 'kwittr_cover.png',
+	description : "Kwittr is a proof of concept app that helps users measure and moderate their smoking habit. Caution: heavy emoji use.",
+	link: 'http://www.slideshare.net/lorenzop/kwittr-human-centered-design',
+	category: 'design',
+	btnText: "Presentation on Slideshare"
+},
 {
 	title: "Resident Designer at Wilkinson and Weeks Hall",
 	subtitle:  "",
@@ -71,7 +87,7 @@ var portfolioData = [
 	link: 'http://flickr.com/lorenzop',
 	category: 'design',
 	btnText: "Go to Flickr"
-}, 
+},
 {
 	title: "Presentation Design",
 	subtitle:  "A short presentation I gave at the EF Unconference.",
@@ -81,6 +97,14 @@ var portfolioData = [
 	category: 'design',
 	btnText: "View Presentation",
     disabled: true
+},{
+	title: "President, 2015/2016 - Imperial Entrepreneurs",
+	subtitle:  "",
+	img: 'ice_cover.png',
+	description : "I have been elected president of the society for the academic year 2015/2016. I have written a (very controversial) article begging the question \"What is the role of a student entrepreneurship society?\", that upset the business people quite a lot.",
+	link: 'https://medium.com/@lorenzopaoliani/what-is-the-role-of-an-entrepreneurship-society-cdb1ff40ded9',
+	btnText: 'Read on Medium',
+	category: 'else'
 },
 {
 	title: "Hall Senior",
