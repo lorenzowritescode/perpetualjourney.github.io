@@ -1,9 +1,16 @@
 var portfolioData = [
 {
+	title: "Domini",
+	subtitle:  "Summer Internship 2015",
+	img: 'domini.png',
+	description : "Over the 2 months spent at Domini I have created from scratch the Domini web application, which allows users to write and save code, request remote executions, and inspect the results - through custom charts and tables, all in the browser. This has been a very challenging project, and I have designed and curated the development of the application. I have used React + Flux for the front-end, Node + Express for the back-end, and PostgreSQL as the database.",
+	link: '',
+	btnText: ''
+},{
 	title: "BentoChat",
 	subtitle:  "Year 2 WebApp Project",
 	img: 'bento_cover.png',
-	description : "BentoChat is an opinionated platform for group productivity. It offers a robust Chat, a streamlined Wiki, and intuitive Todos. It's still a work in progress for now, but a private alpha will be available in September 2015 with a public launch set for early 2016.",
+	description : "BentoChat is an opinionated platform for group productivity. It offers a robust Chat, a streamlined Wiki, and intuitive Todos. It's still a work in progress for now, but I'm planning on releasing a private alpha in early 2016.",
 	link: 'http://www.slideshare.net/lorenzop/bentochat-a-platform-for-group-organisation',
 	btnText: 'Presentation on Slideshare'
 },{
