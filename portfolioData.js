@@ -1,5 +1,12 @@
 var portfolioData = [
 {
+    title: "Pie Mapping",
+    subtitle:  "Fleet management and optimisation - Industrial Placement 2016",
+    img: 'cuttlefish.gif',
+    description : '<p>I spent 6 months working as a full-stack engineer at <a href="https://piemapping.com">Pie Mapping</a>. Pie Mapping is a startup working closely with freight hauliers to revolutionise a sector that runs on technology from the 90s.</p><p>Pie Mapping offers products to connect, organise, and monitor a fleet of vehicles. The bulk of my time has been spent working on Pie\'s main product, a platform to manage and track all the assets of a long haul transportation company - schedule routes, assign drivers, manage pickups and drop-offs, etc.</p><p> I also worked on my own project, a network wide route optimisation engine. It takes the guess work out of building a national long haul transport network, reduces scheduling mistakes, and handles constraints. all of this while providing optimal fulfilment plans that cannot be rivaled by the ones currently composed by hand by journey planners.</p><p> I named it Cuttlefish, because it would require to adapt multiple use cases and complex requirements over time.</p>',
+    link: 'http://www.slideshare.net/lorenzop/fleet-management-and-optimisation-industrial-placement-presentation',
+    btnText: 'Presentation on Slideshare'
+},{
 	title: "Domini",
 	subtitle:  "Summer Internship 2015",
 	img: 'domini.png',
@@ -105,10 +112,18 @@ var portfolioData = [
 	btnText: "View Presentation",
     disabled: true
 },{
+    title: "Cheap Eats Business Pitch",
+    subtitle:  "A pitch for a (fictional) startup. Made for the Business and Management course at Imperial College London.",
+    img: 'cheap_eats_revenue.jpeg',
+    description : "<p>A brief pitch my team and I put together for our 3rd year business course. Cheap Eats is a loyalty scheme for indipendent restaurants aimed at smoothing demand over otherwise idle times through location based deals and in-app notifications.</p><p>Please notice my iconic use of drop shadows in these slides. This presentation won the 3rd place award for best pitch of the year.</p>",
+    link: 'http://www.slideshare.net/lorenzop/cheap-eats',
+    category: 'else',
+    btnText: "View Presentation"
+},{
 	title: "President, 2015/2016 - Imperial Entrepreneurs",
 	subtitle:  "",
 	img: 'ice_cover.png',
-	description : "I have been elected president of the society for the academic year 2015/2016. I have written a (very controversial) article begging the question \"What is the role of a student entrepreneurship society?\", that upset the business people quite a lot.",
+	description : "I have been elected president of the society for the academic year 2015/2016. I have written a (very controversial) article begging the question \"What is the role of a student entrepreneurship society?\"",
 	link: 'https://medium.com/@lorenzopaoliani/what-is-the-role-of-an-entrepreneurship-society-cdb1ff40ded9',
 	btnText: 'Read on Medium',
 	category: 'else'
